@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:arstechnica_fschmtz/classes/feed.dart';
 import 'package:arstechnica_fschmtz/configs/configs.dart';
-import 'package:arstechnica_fschmtz/widgets/newsCard.dart';
+import 'package:arstechnica_fschmtz/widgets/newsCardSmall.dart';
 import 'package:arstechnica_fschmtz/widgets/newsCardBig.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -42,7 +42,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        elevation: 2,
         title: Text('Ars Technica',
             style: TextStyle(
                 color: Theme.of(context).textTheme.headline6.color,
@@ -55,14 +55,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: ListView.builder(
+            :
+        ListView(physics: AlwaysScrollableScrollPhysics(),
+            children: [
+                const SizedBox(height: 10),
+                ListView.separated(
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 15,
+                  ),
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: articlesList.length,
                   itemBuilder: (context, index) {
-                    if(index < 3) {
+
+                    if (index < 3) {
                       return NewsCardBig(
                         feed: Feed(
                           title: articlesList[index].title,
@@ -73,19 +79,19 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                               .take(1)
                               .toString()
                               .substring(
-                              1,
-                              articlesList[index]
-                                  .content
-                                  .images
-                                  .take(1)
-                                  .toString()
-                                  .length -
-                                  1),
+                                  1,
+                                  articlesList[index]
+                                          .content
+                                          .images
+                                          .take(1)
+                                          .toString()
+                                          .length -
+                                      1),
                           data: articlesList[index].pubDate.toString(),
                         ),
                       );
-                    }else{
-                      return NewsCard(
+                    } else {
+                      return NewsCardSmall(
                         feed: Feed(
                           title: articlesList[index].title,
                           link: articlesList[index].link,
@@ -95,21 +101,24 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                               .take(1)
                               .toString()
                               .substring(
-                              1,
-                              articlesList[index]
-                                  .content
-                                  .images
-                                  .take(1)
-                                  .toString()
-                                  .length -
-                                  1),
+                                  1,
+                                  articlesList[index]
+                                          .content
+                                          .images
+                                          .take(1)
+                                          .toString()
+                                          .length -
+                                      1),
                           data: articlesList[index].pubDate.toString(),
                         ),
                       );
                     }
                   },
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                )
+              ]),
       ),
       bottomNavigationBar: BottomAppBar(
           child: Padding(
@@ -126,15 +135,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 onPressed: () {
                   getRssData();
                 }),
-            /*IconButton(
-                    icon: Icon(
-                      Icons.menu_outlined,
-                      size: 25,
-                      color: Theme.of(context).hintColor,
-                    ),
-                    onPressed: () {
-                      openBottomSheet();
-                    }),*/
             IconButton(
                 icon: Icon(
                   Icons.settings_outlined,

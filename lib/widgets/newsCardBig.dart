@@ -16,7 +16,7 @@ class NewsCardBig extends StatefulWidget {
 class _NewsCardBigState extends State<NewsCardBig> {
   //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await canLaunch(url)) {
+    if (await launch(url)) {
       await launch(url);
     } else {
       throw 'Error';
@@ -27,7 +27,7 @@ class _NewsCardBigState extends State<NewsCardBig> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+      margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
@@ -40,7 +40,7 @@ class _NewsCardBigState extends State<NewsCardBig> {
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         onTap: () {
-          _launchBrowser(widget.feed.link.toString());
+          _launchBrowser(widget.feed.link);
         },
         child: Column(
           children: [
@@ -48,41 +48,51 @@ class _NewsCardBigState extends State<NewsCardBig> {
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(10),
                     topLeft: Radius.circular(10)),
-                child: FadeInImage.assetNetwork(
-                    image: widget.feed.linkImagem,
-                    placeholder: "assets/placeholder.jpg",
-                    width: 1500,
-                    height: 150,
-                    fit: BoxFit.fitWidth)),
+                child: widget.feed.linkImagem
+                        .contains('http://feeds.feedburner.com/~ff/arstechnica/')
+                    ? FadeInImage.assetNetwork(
+                        image: "assets/placeholder.jpg",
+                        placeholder: "assets/placeholder.jpg",
+                        width: 1500,
+                        height: 150,
+                        fit: BoxFit.fitWidth)
+                    : FadeInImage.assetNetwork(
+                        image: widget.feed.linkImagem,
+                        placeholder: "assets/placeholder.jpg",
+                        width: 1500,
+                        height: 150,
+                        fit: BoxFit.fitWidth)),
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
+              padding: const EdgeInsets.fromLTRB(15, 10, 15, 5),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    widget.feed.title,
-                    style: TextStyle(fontSize: 17),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      widget.feed.title,
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.feed.DataFormatada,
-                        style: TextStyle(fontSize: 14,color: Theme.of(context).hintColor),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      IconButton(
-                          color: Theme.of(context).hintColor,
-                          icon: Icon(Icons.share_outlined),
-                          constraints: BoxConstraints(),
-                          iconSize: 22,
-                          onPressed: () {
-                            Share.share(widget.feed.link);
-                          }),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.feed.DataFormatada,
+                          style: TextStyle(
+                              fontSize: 14, color: Theme.of(context).hintColor),
+                        ),
+                        IconButton(
+                            color: Theme.of(context).hintColor,
+                            icon: Icon(Icons.share_outlined),
+                            constraints: BoxConstraints(),
+                            iconSize: 22,
+                            onPressed: () {
+                              Share.share(widget.feed.link);
+                            }),
+                      ],
+                    ),
                   ),
                 ],
               ),
