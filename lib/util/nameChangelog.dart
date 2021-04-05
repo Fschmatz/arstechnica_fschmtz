@@ -1,17 +1,20 @@
 class NameChangelog{
 
-  static String appVersion = "0.0.7";
+  static String appVersion = "1.0.0";
   static String appName = "Ars Technica Rss Fschmtz";
 
   static String changelogCurrent = '''  
   
 Current version:  
 
-0.0.7
-- Bug Fixes
+1.0.0
+- Technically Usable
 ''';
 
   static String changelogsOld = '''
+
+0.0.7
+- Bug Fixes
 
 0.0.6
 - Bug Fixes

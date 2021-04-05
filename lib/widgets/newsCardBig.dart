@@ -31,7 +31,7 @@ class _NewsCardBigState extends State<NewsCardBig> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
-          color: Colors.grey[700].withOpacity(0.3),
+          color: Colors.grey[700].withOpacity(0.5),
           width: 1,
         ),
       ),

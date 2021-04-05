@@ -68,7 +68,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   itemCount: articlesList.length,
                   itemBuilder: (context, index) {
 
-                    if (index < 3) {
+                    if (index < 2) {
                       return NewsCardBig(
                         feed: Feed(
                           title: articlesList[index].title,
@@ -133,6 +133,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                   color: Theme.of(context).hintColor,
                 ),
                 onPressed: () {
+                  setState(() {
+                    loading = true;
+                  });
                   getRssData();
                 }),
             IconButton(
