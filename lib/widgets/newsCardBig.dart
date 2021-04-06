@@ -31,7 +31,7 @@ class _NewsCardBigState extends State<NewsCardBig> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
-          color: Colors.grey[700].withOpacity(0.5),
+          color: Colors.grey[700].withOpacity(0.3),
           width: 1,
         ),
       ),
@@ -63,31 +63,34 @@ class _NewsCardBigState extends State<NewsCardBig> {
                         height: 150,
                         fit: BoxFit.fitWidth)),
             Padding(
-              padding: const EdgeInsets.fromLTRB(15, 10, 15, 5),
+              padding: const EdgeInsets.fromLTRB(15, 10, 5, 5),
               child: Column(
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(
-                      widget.feed.title,
-                      style: TextStyle(fontSize: 17),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                      child: Text(
+                        widget.feed.title,
+                        style: TextStyle(fontSize: 16.5),
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 1, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           widget.feed.DataFormatada,
                           style: TextStyle(
-                              fontSize: 14, color: Theme.of(context).hintColor),
+                              fontSize: 13.5, color: Theme.of(context).hintColor),
                         ),
                         IconButton(
                             color: Theme.of(context).hintColor,
                             icon: Icon(Icons.share_outlined),
                             constraints: BoxConstraints(),
-                            iconSize: 22,
+                            iconSize: 23,
                             onPressed: () {
                               Share.share(widget.feed.link);
                             }),

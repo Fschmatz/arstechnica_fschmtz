@@ -20,7 +20,7 @@ class Changelog extends StatelessWidget {
                 width: 1,
               ),
             ),
-            elevation: 0.0,
+            elevation: 2,
             child: Container(
               padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
               child: Text(
@@ -31,8 +31,8 @@ class Changelog extends StatelessWidget {
               ),
             ),
           ),
-
-          Divider(thickness: 2,),
+          const SizedBox(height: 5,),
+          Divider(thickness: 2, color: Colors.grey.withOpacity(0.3)),
           Container(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 5),
             child: Column(

@@ -12,14 +12,12 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+class _HomeState extends State<Home>{
+
   static const String feedUrl =
       'http://feeds.arstechnica.com/arstechnica/index';
   List<RssItem> articlesList = [];
   bool loading = true;
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -35,14 +33,15 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       articlesList = channel.items.toList();
       loading = false;
     });
-    //client.close();
+    client.close();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
+        elevation: 0,
+        toolbarHeight: 50,
         title: Text('Ars Technica',
             style: TextStyle(
                 color: Theme.of(context).textTheme.headline6.color,
@@ -58,7 +57,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             :
         ListView(physics: AlwaysScrollableScrollPhysics(),
             children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(
                     height: 15,
@@ -122,7 +121,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       ),
       bottomNavigationBar: BottomAppBar(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

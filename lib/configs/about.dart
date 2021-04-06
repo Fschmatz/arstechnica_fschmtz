@@ -16,7 +16,6 @@ class About extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(6,0,6,5),
           child: ListView(
               children: <Widget>[
-
                 const SizedBox(height: 20),
                 Text(NameChangelog.appName+" " + NameChangelog.appVersion,
                   textAlign: TextAlign.center,
@@ -29,7 +28,7 @@ class About extends StatelessWidget {
 
                 CircleAvatar(
                   radius: 55,
-                  backgroundColor: Colors.green,
+                  backgroundColor: Theme.of(context).accentColor,
                   child: CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/avatar.jpg'),
@@ -45,7 +44,7 @@ HAMMERED AND REDONE:
       ''',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                 ),
 
@@ -65,11 +64,10 @@ used for testing and learning.
                 ),
 
                 Text( ''' 
-                      
-“Software Engineering is 
-a learning process, 
-working code a side effect.” 
-            
+                    
+“ A clever person solves a problem.
+A wise person avoids it. ” 
+- Albert Einstein             
       ''',
                   textAlign: TextAlign.center,
                   style: TextStyle(
