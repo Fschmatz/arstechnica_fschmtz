@@ -39,15 +39,6 @@ class _HomeState extends State<Home>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 50,
-        title: Text('Ars Technica',
-            style: TextStyle(
-                color: Theme.of(context).textTheme.headline6.color,
-                fontSize: 20,
-                fontWeight: FontWeight.w600)),
-      ),
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 500),
         child: loading
@@ -57,10 +48,17 @@ class _HomeState extends State<Home>{
             :
         ListView(physics: AlwaysScrollableScrollPhysics(),
             children: [
-                const SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(18, 15, 20, 20),
+                child: Text('Ars Technica',
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.headline6.color,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600)),
+              ),
                 ListView.separated(
                   separatorBuilder: (context, index) => SizedBox(
-                    height: 15,
+                    height: 18,
                   ),
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,

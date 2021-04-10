@@ -24,13 +24,13 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 0,
       margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
           color: Colors.grey[700].withOpacity(0.3),
-          width: 1,
+          width: 0.8,
         ),
       ),
       child: InkWell(
@@ -69,7 +69,7 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       child: Text(
                         widget.feed.title,
-                        style: TextStyle(fontSize: 16.5),
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
                   ),
@@ -83,13 +83,13 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
                     Text(
                       widget.feed.DataFormatada,
                       style: TextStyle(
-                          fontSize: 13.5, color: Theme.of(context).hintColor),
+                          fontSize: 13.7, color: Theme.of(context).hintColor),
                     ),
                     IconButton(
                         color: Theme.of(context).hintColor,
                         icon: Icon(Icons.share_outlined),
                         constraints: BoxConstraints(),
-                        iconSize: 23,
+                        iconSize: 22,
                         onPressed: () {
                           Share.share(widget.feed.link);
                         }),
