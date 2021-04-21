@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFFE6E6EF),
-    accentColor: Colors.orangeAccent[700], //0xFF01A173
-    scaffoldBackgroundColor: Color(0xFFF1F1F9), //0xFFF5F5FE
+    accentColor: Color(0xFFE6753B),
+    scaffoldBackgroundColor: Color(0xFFF1F1F9),
     cardTheme: CardTheme(
       color: Color(0xFFF5F5FE),
     ),
@@ -14,24 +14,22 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFF9F9FF),
     ),
     bottomAppBarColor: Color(0xFFE6E6EF),
-    bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFFE6E6EF)));
+   );
 
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF232324),
-    accentColor: Colors.deepOrangeAccent,
-    scaffoldBackgroundColor: Color(0xFF232324),
+    primaryColor: Color(0xFF242425),
+    accentColor: Color(0xFFE6753B),
+    scaffoldBackgroundColor: Color(0xFF242425),
     cardTheme: CardTheme(
-      color: Color(0xFF272728),
+      color: Color(0xFF363637),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF272728),
     ),
-    bottomAppBarColor: Color(0xFF1A1A1B), //0xFF212124
-    bottomSheetTheme:
-        BottomSheetThemeData(modalBackgroundColor: Color(0xFF1A1A1B)));
+    bottomAppBarColor: Color(0xFF171718), //0xFF212124
+    );
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';

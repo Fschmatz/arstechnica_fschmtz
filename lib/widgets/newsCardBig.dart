@@ -26,10 +26,10 @@ class _NewsCardBigState extends State<NewsCardBig> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
+      elevation: 2,
       margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         side: BorderSide(
           color: Colors.grey[700].withOpacity(0.3),
           width: 0.8,
@@ -37,7 +37,7 @@ class _NewsCardBigState extends State<NewsCardBig> {
       ),
       child: InkWell(
         customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         onTap: () {
           _launchBrowser(widget.feed.link);
@@ -46,8 +46,8 @@ class _NewsCardBigState extends State<NewsCardBig> {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    topLeft: Radius.circular(10)),
+                    topRight: Radius.circular(12),
+                    topLeft: Radius.circular(12)),
                 child: widget.feed.linkImagem
                         .contains('http://feeds.feedburner.com/~ff/arstechnica/')
                     ? FadeInImage.assetNetwork(

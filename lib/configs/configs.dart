@@ -32,9 +32,12 @@ class _ConfigsState extends State<Configs> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
                 elevation: 0,
                 margin: const EdgeInsets.all(2.0),
-                color: Colors.yellow[800],
+                color: Color(0xFFE6753B),
                 child: ListTile(
                   title: Text(
                     "Flutter " +
@@ -59,6 +62,9 @@ class _ConfigsState extends State<Configs> {
                   ),
                 ),
                 child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
                   leading: Icon(Icons.text_snippet_outlined),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   title: Text(
@@ -90,6 +96,9 @@ class _ConfigsState extends State<Configs> {
                   ),
                 ),
                 child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
                   leading: Icon(Icons.text_snippet_outlined),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   title: Text(
