@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:arstechnica_fschmtz/classes/feed.dart';
-import 'package:arstechnica_fschmtz/configs/configs.dart';
+import 'package:arstechnica_fschmtz/configs/settings.dart';
 import 'package:arstechnica_fschmtz/widgets/newsCardSmall.dart';
 import 'package:arstechnica_fschmtz/widgets/newsCardBig.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +39,7 @@ class _HomeState extends State<Home>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(elevation: 0,toolbarHeight: 0,),
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 500),
         child: loading
@@ -49,7 +50,7 @@ class _HomeState extends State<Home>{
         ListView(physics: AlwaysScrollableScrollPhysics(),
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(18, 15, 20, 20),
+                padding: const EdgeInsets.fromLTRB(16, 15, 16, 10),
                 child: Text('Ars Technica',
                     style: TextStyle(
                         color: Theme.of(context).textTheme.headline6.color,
@@ -57,9 +58,7 @@ class _HomeState extends State<Home>{
                         fontWeight: FontWeight.w600)),
               ),
                 ListView.separated(
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 18,
-                  ),
+                  separatorBuilder: (context, index) => const Divider(),
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: articlesList.length,
@@ -119,15 +118,18 @@ class _HomeState extends State<Home>{
       ),
       bottomNavigationBar: BottomAppBar(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
                 icon: Icon(
                   Icons.refresh_outlined,
-                  size: 24,
-                  color: Theme.of(context).hintColor,
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .color
+                      .withOpacity(0.7),
                 ),
                 onPressed: () {
                   setState(() {
@@ -138,14 +140,17 @@ class _HomeState extends State<Home>{
             IconButton(
                 icon: Icon(
                   Icons.settings_outlined,
-                  size: 24,
-                  color: Theme.of(context).hintColor,
+                  color: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .color
+                      .withOpacity(0.7),
                 ),
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => Configs(),
+                        builder: (BuildContext context) => Settings(),
                         fullscreenDialog: true,
                       ));
                 }),

@@ -23,81 +23,64 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        side: BorderSide(
-          color: Colors.grey[700].withOpacity(0.3),
-          width: 0.8,
-        ),
-      ),
-      child: InkWell(
-        customBorder: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        onTap: () {
-          _launchBrowser(widget.feed.link);
-        },
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 15, 5, 6),
-          child: Column(
-            children: [
-              Row(
+    return InkWell(
+      onTap: () {
+        _launchBrowser(widget.feed.link);
+      },
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 15, 16, 6),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    child: widget.feed.linkImagem
+                        .contains('http://feeds.feedburner.com/~ff/arstechnica/')
+                        ? FadeInImage.assetNetwork(
+                        image: "assets/placeholder.jpg",
+                        placeholder: "assets/placeholder.jpg",
+                        width: 100,
+                        height: 75,
+                        fit: BoxFit.fill)
+                        : FadeInImage.assetNetwork(
+                        image: widget.feed.linkImagem,
+                        placeholder: "assets/placeholder.jpg",
+                        width: 100,
+                        height: 75,
+                        fit: BoxFit.fill)),
+                const SizedBox(width : 10),
+                Flexible(
+                  child: Text(
+                    widget.feed.title,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      child: widget.feed.linkImagem
-                          .contains('http://feeds.feedburner.com/~ff/arstechnica/')
-                          ? FadeInImage.assetNetwork(
-                          image: "assets/placeholder.jpg",
-                          placeholder: "assets/placeholder.jpg",
-                          width: 100,
-                          height: 75,
-                          fit: BoxFit.fill)
-                          : FadeInImage.assetNetwork(
-                          image: widget.feed.linkImagem,
-                          placeholder: "assets/placeholder.jpg",
-                          width: 100,
-                          height: 75,
-                          fit: BoxFit.fill)),
-                  const SizedBox(width : 10),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-                      child: Text(
-                        widget.feed.title,
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
+                  Text(
+                    widget.feed.DataFormatada,
+                    style: TextStyle(
+                        fontSize: 12.5, color: Theme.of(context).hintColor),
                   ),
+                  IconButton(
+                      color: Theme.of(context).hintColor,
+                      icon: Icon(Icons.share_outlined),
+                      constraints: BoxConstraints(maxHeight: 30),
+                      iconSize: 21,
+                      onPressed: () {
+                        Share.share(widget.feed.link);
+                      }),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 5, 1, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.feed.DataFormatada,
-                      style: TextStyle(
-                          fontSize: 13.7, color: Theme.of(context).hintColor),
-                    ),
-                    IconButton(
-                        color: Theme.of(context).hintColor,
-                        icon: Icon(Icons.share_outlined),
-                        constraints: BoxConstraints(),
-                        iconSize: 22,
-                        onPressed: () {
-                          Share.share(widget.feed.link);
-                        }),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

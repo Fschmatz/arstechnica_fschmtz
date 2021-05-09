@@ -4,31 +4,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFE6E6EF),
+    primaryColor: Color(0xFFF1F1F3),
     accentColor: Color(0xFFE6753B),
-    scaffoldBackgroundColor: Color(0xFFF1F1F9),
+    scaffoldBackgroundColor: Color(0xFFF1F1F3),
     cardTheme: CardTheme(
-      color: Color(0xFFF5F5FE),
+      color: Color(0xFFFFFFFF),
     ),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFFF9F9FF),
+      backgroundColor: Color(0xFFFFFFFF),
     ),
-    bottomAppBarColor: Color(0xFFE6E6EF),
+    bottomAppBarColor: Color(0xFFE5E5E7),
    );
 
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF242425),
+    primaryColor: Color(0xFF202022),
     accentColor: Color(0xFFE6753B),
-    scaffoldBackgroundColor: Color(0xFF242425),
+    scaffoldBackgroundColor: Color(0xFF202022),
     cardTheme: CardTheme(
-      color: Color(0xFF363637),
+      color: Color(0xFF272729),
     ),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFF272728),
+      backgroundColor: Color(0xFF252527),
     ),
-    bottomAppBarColor: Color(0xFF171718), //0xFF212124
+    bottomAppBarColor: Color(0xFF171719),
     );
 
 class ThemeNotifier extends ChangeNotifier {
