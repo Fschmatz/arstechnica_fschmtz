@@ -12,8 +12,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>{
-
+class _HomeState extends State<Home> {
   static const String feedUrl =
       'http://feeds.arstechnica.com/arstechnica/index';
   List<RssItem> articlesList = [];
@@ -39,124 +38,99 @@ class _HomeState extends State<Home>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,toolbarHeight: 0,),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('Ars Technica'),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.settings_outlined,
+                color: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .color
+                    .withOpacity(0.7),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => Settings(),
+                      fullscreenDialog: true,
+                    ));
+              }),
+        ],
+      ),
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 500),
         child: loading
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            :
-        ListView(physics: AlwaysScrollableScrollPhysics(),
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 15, 16, 10),
-                child: Text('Ars Technica',
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.headline6.color,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600)),
+            : RefreshIndicator(
+                onRefresh: getRssData,
+                child: ListView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    children: [
+                      ListView.separated(
+                        separatorBuilder: (context, index) => const Divider(),
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: articlesList.length,
+                        itemBuilder: (context, index) {
+                          if (index < 2) {
+                            return NewsCardBig(
+                              feed: Feed(
+                                title: articlesList[index].title,
+                                link: articlesList[index].link,
+                                linkImagem: articlesList[index]
+                                    .content
+                                    .images
+                                    .take(1)
+                                    .toString()
+                                    .substring(
+                                        1,
+                                        articlesList[index]
+                                                .content
+                                                .images
+                                                .take(1)
+                                                .toString()
+                                                .length -
+                                            1),
+                                data: articlesList[index].pubDate.toString(),
+                              ),
+                            );
+                          } else {
+                            return NewsCardSmall(
+                              feed: Feed(
+                                title: articlesList[index].title,
+                                link: articlesList[index].link,
+                                linkImagem: articlesList[index]
+                                    .content
+                                    .images
+                                    .take(1)
+                                    .toString()
+                                    .substring(
+                                        1,
+                                        articlesList[index]
+                                                .content
+                                                .images
+                                                .take(1)
+                                                .toString()
+                                                .length -
+                                            1),
+                                data: articlesList[index].pubDate.toString(),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      )
+                    ]),
               ),
-                ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(),
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: articlesList.length,
-                  itemBuilder: (context, index) {
-
-                    if (index < 2) {
-                      return NewsCardBig(
-                        feed: Feed(
-                          title: articlesList[index].title,
-                          link: articlesList[index].link,
-                          linkImagem: articlesList[index]
-                              .content
-                              .images
-                              .take(1)
-                              .toString()
-                              .substring(
-                                  1,
-                                  articlesList[index]
-                                          .content
-                                          .images
-                                          .take(1)
-                                          .toString()
-                                          .length -
-                                      1),
-                          data: articlesList[index].pubDate.toString(),
-                        ),
-                      );
-                    } else {
-                      return NewsCardSmall(
-                        feed: Feed(
-                          title: articlesList[index].title,
-                          link: articlesList[index].link,
-                          linkImagem: articlesList[index]
-                              .content
-                              .images
-                              .take(1)
-                              .toString()
-                              .substring(
-                                  1,
-                                  articlesList[index]
-                                          .content
-                                          .images
-                                          .take(1)
-                                          .toString()
-                                          .length -
-                                      1),
-                          data: articlesList[index].pubDate.toString(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                )
-              ]),
       ),
-      bottomNavigationBar: BottomAppBar(
-          child: Padding(
-        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-                icon: Icon(
-                  Icons.refresh_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .color
-                      .withOpacity(0.7),
-                ),
-                onPressed: () {
-                  setState(() {
-                    loading = true;
-                  });
-                  getRssData();
-                }),
-            IconButton(
-                icon: Icon(
-                  Icons.settings_outlined,
-                  color: Theme.of(context)
-                      .textTheme
-                      .headline6
-                      .color
-                      .withOpacity(0.7),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => Settings(),
-                        fullscreenDialog: true,
-                      ));
-                }),
-          ],
-        ),
-      )),
     );
   }
 }

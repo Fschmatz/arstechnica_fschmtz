@@ -113,7 +113,7 @@ class AppInfo extends StatelessWidget {
             leading: Icon(Icons.messenger_outline),
             title: Text(
               "A clever person solves a problem. A wise person avoids it.\nAlbert Einstein",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 16),
             ),
           ),
         ]));

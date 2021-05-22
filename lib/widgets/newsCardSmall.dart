@@ -28,7 +28,7 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
         _launchBrowser(widget.feed.link);
       },
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 15, 16, 6),
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
         child: Column(
           children: [
             Row(
@@ -60,14 +60,19 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
+              padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.feed.DataFormatada,
-                    style: TextStyle(
-                        fontSize: 12.5, color: Theme.of(context).hintColor),
+                  Column(
+                    children: [
+                      const SizedBox(height: 10,),
+                      Text(
+                        widget.feed.DataFormatada,
+                        style: TextStyle(
+                            fontSize: 12.5, color: Theme.of(context).hintColor),
+                      ),
+                    ],
                   ),
                   IconButton(
                       color: Theme.of(context).hintColor,

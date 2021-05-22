@@ -41,13 +41,13 @@ class _NewsCardBigState extends State<NewsCardBig> {
                         image: "assets/placeholder.jpg",
                         placeholder: "assets/placeholder.jpg",
                         width: 1500,
-                        height: 140,
+                        height: 150,
                         fit: BoxFit.fitWidth)
                     : FadeInImage.assetNetwork(
                         image: widget.feed.linkImagem,
                         placeholder: "assets/placeholder.jpg",
                         width: 1500,
-                        height: 140,
+                        height: 150,
                         fit: BoxFit.fitWidth)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,14 +60,19 @@ class _NewsCardBigState extends State<NewsCardBig> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 10, 0, 5),
+                  padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        widget.feed.DataFormatada,
-                        style: TextStyle(
-                            fontSize: 12.5, color: Theme.of(context).hintColor),
+                      Column(
+                        children: [
+                          const SizedBox(height: 5,),
+                          Text(
+                            widget.feed.DataFormatada,
+                            style: TextStyle(
+                                fontSize: 12.5, color: Theme.of(context).hintColor),
+                          ),
+                        ],
                       ),
                       IconButton(
                           color: Theme.of(context).hintColor,
