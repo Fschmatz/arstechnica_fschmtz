@@ -74,14 +74,27 @@ class _NewsCardBigState extends State<NewsCardBig> {
                           ),
                         ],
                       ),
-                      IconButton(
-                          color: Theme.of(context).hintColor,
-                          icon: Icon(Icons.share_outlined),
-                          constraints: BoxConstraints(maxHeight: 30),
-                          iconSize: 21,
+                      Container(
+                        width: 50,
+                        child: TextButton(
                           onPressed: () {
                             Share.share(widget.feed.link);
-                          }),
+                          },
+                          child: Icon(
+                            Icons.share_outlined,
+                            size: 17.0,
+                            color: Theme.of(context).hintColor,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            primary: Theme.of(context).cardTheme.color,
+                            onPrimary: Theme.of(context).accentColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
