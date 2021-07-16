@@ -8,6 +8,7 @@ class NewsCardSmall extends StatefulWidget {
   _NewsCardSmallState createState() => _NewsCardSmallState();
 
   Feed feed;
+
   NewsCardSmall({Key key, this.feed}) : super(key: key);
 }
 
@@ -27,79 +28,47 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
       onTap: () {
         _launchBrowser(widget.feed.link);
       },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    child: widget.feed.linkImagem
-                        .contains('http://feeds.feedburner.com/~ff/arstechnica/')
-                        ? FadeInImage.assetNetwork(
-                        image: "assets/placeholder.jpg",
-                        placeholder: "assets/placeholder.jpg",
-                        width: 100,
-                        height: 75,
-                        fit: BoxFit.fill)
-                        : FadeInImage.assetNetwork(
-                        image: widget.feed.linkImagem,
-                        placeholder: "assets/placeholder.jpg",
-                        width: 100,
-                        height: 75,
-                        fit: BoxFit.fill)),
-                const SizedBox(width : 10),
-                Flexible(
-                  child: Text(
-                    widget.feed.title,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ],
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(
+              widget.feed.title,
+              style: TextStyle(fontSize: 16),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      const SizedBox(height: 10,),
-                      Text(
-                        widget.feed.DataFormatada,
-                        style: TextStyle(
-                            fontSize: 12.5, color: Theme.of(context).hintColor),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: 55,
-                    child: TextButton(
-                      onPressed: () {
-                        Share.share(widget.feed.link);
-                      },
-                      child: Icon(
-                        Icons.share_outlined,
-                        size: 19,
-                        color: Theme.of(context).hintColor,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        primary: Theme.of(context).cardTheme.color,
-                        onPrimary: Theme.of(context).accentColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+          ),
+          ListTile(
+            leading: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+              child: Text(
+                widget.feed.DataFormatada,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.5, color: Theme.of(context).hintColor),
               ),
             ),
-          ],
-        ),
+            trailing: Container(
+              width: 55,
+              child: TextButton(
+                onPressed: () {
+                  Share.share(widget.feed.link);
+                },
+                child: Icon(
+                  Icons.share_outlined,
+                  size: 19,
+                  color: Theme.of(context).hintColor,
+                ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Theme.of(context).cardTheme.color,
+                  onPrimary: Theme.of(context).accentColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

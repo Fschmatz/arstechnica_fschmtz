@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
         duration: Duration(milliseconds: 500),
         child: loading
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: Theme.of(context).accentColor,),
               )
             : RefreshIndicator(
                 onRefresh: getRssData,
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                         shrinkWrap: true,
                         itemCount: articlesList.length,
                         itemBuilder: (context, index) {
-                          if (index < 2) {
+                          if (index <= 2) {
                             return NewsCardBig(
                               feed: Feed(
                                 title: articlesList[index].title,

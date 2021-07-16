@@ -26,86 +26,70 @@ class _NewsCardBigState extends State<NewsCardBig> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        _launchBrowser(widget.feed.link);
-      },
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
-        child: Column(
-          children: [
-            ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+        onTap: () {
+          _launchBrowser(widget.feed.link);
+        },
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 5),
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 child: widget.feed.linkImagem.contains(
                         'http://feeds.feedburner.com/~ff/arstechnica/')
-                    ? FadeInImage.assetNetwork(
-                        image: "assets/placeholder.jpg",
-                        placeholder: "assets/placeholder.jpg",
-                        width: 1500,
-                        height: 150,
-                        fit: BoxFit.fitWidth)
+                    ?  Image(image: AssetImage('assets/placeholder.jpg'),
+                  width: 1500,
+                  height: 150,
+                  fit: BoxFit.fitWidth,
+                )
                     : FadeInImage.assetNetwork(
                         image: widget.feed.linkImagem,
                         placeholder: "assets/placeholder.jpg",
                         width: 1500,
                         height: 150,
                         fit: BoxFit.fitWidth)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 15, 0, 0),
+          ),
+          Column(
+            children: [
+              ListTile(
+                title: Text(
+                  widget.feed.title,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                   child: Text(
-                    widget.feed.title,
-                    style: TextStyle(fontSize: 16),
+                    widget.feed.DataFormatada,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                        fontSize: 12.5, color: Theme.of(context).hintColor),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            widget.feed.DataFormatada,
-                            style: TextStyle(
-                                fontSize: 12.5,
-                                color: Theme.of(context).hintColor),
-                          ),
-                        ],
+                trailing: Container(
+                  width: 55,
+                  child: TextButton(
+                    onPressed: () {
+                      Share.share(widget.feed.link);
+                    },
+                    child: Icon(
+                      Icons.share_outlined,
+                      size: 19,
+                      color: Theme.of(context).hintColor,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: Theme.of(context).cardTheme.color,
+                      onPrimary: Theme.of(context).accentColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
-                      Container(
-                        width: 55,
-                        child: TextButton(
-                          onPressed: () {
-                            Share.share(widget.feed.link);
-                          },
-                          child: Icon(
-                            Icons.share_outlined,
-                            size: 19.0,
-                            color: Theme.of(context).hintColor,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            primary: Theme.of(context).cardTheme.color,
-                            onPrimary: Theme.of(context).accentColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+              ),
+            ],
+          ),
+        ]));
   }
 }

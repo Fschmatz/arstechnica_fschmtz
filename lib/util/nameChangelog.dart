@@ -1,17 +1,22 @@
 class NameChangelog{
 
-  static String appVersion = "1.1.2";
+  static String appVersion = "1.2.0";
   static String appName = "Ars Technica Rss Fschmtz";
 
   static String changelogCurrent = '''  
+1.2.0
+- Removed Image from Small Tiles
+- Bug Fixes
+- Small UI Changes
+''';
+
+  static String changelogsOld = '''
 1.1.2
 - Removed Cards
 - New Settings Page
 - Added AppBar
 - Swipe Down to Refresh
-''';
 
-  static String changelogsOld = '''
 1.0.4
 - Technically Usable
 - Small Fixes
