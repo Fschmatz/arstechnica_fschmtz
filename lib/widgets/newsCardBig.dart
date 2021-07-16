@@ -16,7 +16,7 @@ class NewsCardBig extends StatefulWidget {
 class _NewsCardBigState extends State<NewsCardBig> {
   //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await launch(url)) {
+    if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Error';
@@ -35,8 +35,8 @@ class _NewsCardBigState extends State<NewsCardBig> {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: widget.feed.linkImagem
-                        .contains('http://feeds.feedburner.com/~ff/arstechnica/')
+                child: widget.feed.linkImagem.contains(
+                        'http://feeds.feedburner.com/~ff/arstechnica/')
                     ? FadeInImage.assetNetwork(
                         image: "assets/placeholder.jpg",
                         placeholder: "assets/placeholder.jpg",
@@ -66,23 +66,26 @@ class _NewsCardBigState extends State<NewsCardBig> {
                     children: [
                       Column(
                         children: [
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             widget.feed.DataFormatada,
                             style: TextStyle(
-                                fontSize: 12.5, color: Theme.of(context).hintColor),
+                                fontSize: 12.5,
+                                color: Theme.of(context).hintColor),
                           ),
                         ],
                       ),
                       Container(
-                        width: 50,
+                        width: 55,
                         child: TextButton(
                           onPressed: () {
                             Share.share(widget.feed.link);
                           },
                           child: Icon(
                             Icons.share_outlined,
-                            size: 17.0,
+                            size: 19.0,
                             color: Theme.of(context).hintColor,
                           ),
                           style: ElevatedButton.styleFrom(

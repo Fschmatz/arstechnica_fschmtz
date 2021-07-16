@@ -14,7 +14,7 @@ class NewsCardSmall extends StatefulWidget {
 class _NewsCardSmallState extends State<NewsCardSmall> {
   //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await launch(url)) {
+    if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Error';
@@ -75,14 +75,14 @@ class _NewsCardSmallState extends State<NewsCardSmall> {
                     ],
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     child: TextButton(
                       onPressed: () {
                         Share.share(widget.feed.link);
                       },
                       child: Icon(
                         Icons.share_outlined,
-                        size: 17.0,
+                        size: 19,
                         color: Theme.of(context).hintColor,
                       ),
                       style: ElevatedButton.styleFrom(

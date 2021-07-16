@@ -19,10 +19,11 @@ class _SettingsState extends State<Settings> {
     super.initState();
   }
 
-  Color themeColorApp = Color(0xFFE6753B);
-
   @override
   Widget build(BuildContext context) {
+
+    Color themeColorApp = Theme.of(context).accentColor;
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Settings"),
@@ -80,7 +81,7 @@ class _SettingsState extends State<Settings> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.text_snippet_outlined,
+                  Icons.article_outlined,
                 ),
                 title: Text(
                   "Changelog",

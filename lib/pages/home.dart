@@ -69,6 +69,7 @@ class _HomeState extends State<Home> {
               )
             : RefreshIndicator(
                 onRefresh: getRssData,
+                color: Theme.of(context).accentColor,
                 child: ListView(
                     physics: AlwaysScrollableScrollPhysics(),
                     children: [

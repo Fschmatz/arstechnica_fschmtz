@@ -1,5 +1,4 @@
 import 'package:jiffy/jiffy.dart';
-import 'package:flutter/material.dart';
 
 class Feed {
 

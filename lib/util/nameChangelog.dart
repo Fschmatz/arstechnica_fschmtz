@@ -1,10 +1,10 @@
 class NameChangelog{
 
-  static String appVersion = "1.1.1";
+  static String appVersion = "1.1.2";
   static String appName = "Ars Technica Rss Fschmtz";
 
   static String changelogCurrent = '''  
-1.1.1
+1.1.2
 - Removed Cards
 - New Settings Page
 - Added AppBar
@@ -38,13 +38,7 @@ class NameChangelog{
 - Small Fixes
 
 0.0.1
-- Project Start                                  
-
-
-
-
-
-(ಠ‿ಠ)  
+- Project Start 
 ''';
 
 }
